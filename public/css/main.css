@@ -1,30 +1,188 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-top: #e6f2ee;
+    --bg-bottom: #f9fcfb;
+    --surface: #ffffff;
+    --surface-muted: #f4f8f7;
+    --text: #1b2a2a;
+    --text-soft: #405454;
+    --brand: #1a7f64;
+    --brand-deep: #145a47;
+    --accent: #d98b2b;
+    --line: #d5e4df;
+    --shadow: 0 14px 38px rgba(21, 55, 48, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
     margin: 0;
-    padding: 20px;
+    min-height: 100%;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-bottom) 55%, #ffffff 100%);
+    line-height: 1.6;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(11, 48, 38, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+nav ul {
+    margin: 0 auto;
+    max-width: 1080px;
+    padding: 0.85rem 1.25rem;
+    list-style: none;
+    display: flex;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+nav a {
+    display: inline-block;
+    color: #f5fbf8;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.45rem 0.9rem;
+    border-radius: 10px;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background-color: rgba(244, 255, 251, 0.16);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+main {
+    width: min(940px, calc(100% - 2rem));
+    margin: 2.25rem auto;
+    padding: clamp(1.4rem, 2.5vw, 2.5rem);
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    animation: rise-in 500ms ease-out both;
+}
+
+h1,
+h2 {
+    font-family: 'Merriweather', serif;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--brand-deep);
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 0.65rem;
+}
+
+h2 {
+    font-size: clamp(1.2rem, 2.3vw, 1.6rem);
+    margin-bottom: 1rem;
+    color: #214a3f;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-soft);
+    font-size: 1.06rem;
+}
+
+.main-logo {
+    display: block;
+    width: min(100%, 620px);
+    margin: 1.4rem auto 0;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 28px rgba(26, 65, 55, 0.14);
+}
+
+main ul {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.85rem;
+}
+
+main li {
+    background: linear-gradient(140deg, #f6faf9, #ffffff);
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--brand);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    color: var(--text);
+    font-size: 1.02rem;
+}
+
+main li img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 0.6rem;
+}
+
+main li strong {
+    color: var(--brand-deep);
+}
+
+footer {
+    margin: 1rem auto 0;
+    max-width: 1080px;
+    padding: 1.1rem 1rem 1.8rem;
+    text-align: center;
+    color: #48615c;
+    font-size: 0.95rem;
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
     }
-}     
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 700px) {
+    nav ul {
+        justify-content: flex-start;
+    }
+
+    nav a {
+        font-size: 0.95rem;
+    }
+
+    main {
+        margin-top: 1.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
