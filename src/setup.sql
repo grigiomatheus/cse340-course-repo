@@ -30,3 +30,34 @@ VALUES
 (1, 'Playground Restoration', 'Help us restore the local playground equipment and lay down new safety mulch.', 'Centennial Park', '2024-06-15'),
 (2, 'Spring Seedling Sale Preparation', 'Prepare seedling pots and organize the greenhouse for our annual spring sale.', 'GreenHarvest Main Greenhouse', '2024-03-20'),
 (3, 'Food Drive Sorting', 'Sort and package donated canned goods for distribution to local food pantries.', 'Community Center', '2024-11-05');
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL UNIQUE
+);
+
+INSERT INTO category (name)
+VALUES
+('Construction & Repair'),
+('Environment & Agriculture'),
+('Community & Social Services');
+
+CREATE TABLE project_category (
+    project_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (project_id, category_id),
+    CONSTRAINT fk_project 
+        FOREIGN KEY (project_id) 
+        REFERENCES project(project_id) 
+        ON DELETE CASCADE,
+    CONSTRAINT fk_category 
+        FOREIGN KEY (category_id) 
+        REFERENCES category(category_id) 
+        ON DELETE CASCADE
+);
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+(1, 1),
+(2, 2),
+(3, 3);
